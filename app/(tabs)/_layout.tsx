@@ -1,12 +1,11 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { Platform } from 'react-native';
-
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { Image } from 'react-native';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -14,32 +13,64 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: 'white',
+        tabBarInactiveTintColor:'grey',
         headerShown: false,
         tabBarButton: HapticTab,
         tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
+        tabBarStyle: {
+       backgroundColor:'black',
+       borderTopWidth:0,
+       
+        },
+        tabBarLabelStyle:{
+          fontWeight:'700'
+        },
+
+        headerStyle:{
+          backgroundColor:'black'
+        },
+        headerTintColor:'white',
+         headerTitleStyle: {
+      fontWeight: 'bold',
+      fontSize:20,         
+      color: 'white',            
+    },
       }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarLabel:'Chats',
+          title: 'Whatsapp',
+          headerShown: true,
+          tabBarIcon: ({ color }) => (<MaterialCommunityIcons name="android-messages" size={28} color="white" />),
+        }}
+        
+      />
+      <Tabs.Screen
+        name="updates"
+        options={{
+          title: 'Updates',
+          tabBarIcon: ({ color }) => (<Image source={require('@/assets/images/updates.png')}
+          style={{width:28 ,height:28 ,tintColor:'white'}}
+          />),
         }}
       />
       <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
+      name="communities"
+      options={{
+        title : 'Communities',
+        tabBarIcon : ({}) => (<MaterialIcons name="groups-2" size={28} color="white" />)
+      }}
       />
+      <Tabs.Screen
+      name='calls'
+      options={{
+        title:'calls',
+        tabBarIcon : ({}) => (<MaterialIcons name='call' size={28} color={'white'}/>)
+      }}
+      />
+   
     </Tabs>
   );
 }
