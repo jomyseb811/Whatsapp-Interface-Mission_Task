@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { StyleSheet, TextInput, View } from 'react-native'
 import React, { useState } from 'react'
 
 const ReplyBar = () => {
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
      backgroundColor:'#262626ff',
      fontSize:16,
      fontWeight:'500',
-     paddingLeft:30
-    }
+     paddingLeft:30,
+     color:'white'
+    },
 })

@@ -44,7 +44,7 @@ export default function HomeScreen() {
       pathname:'/(tabs)/updates',
       params : {
         title : item.title,
-        photo : encodeURIComponent(item.photo[0])
+        photo : item.photo[0]
       }
       
      }
@@ -73,7 +73,7 @@ export default function HomeScreen() {
       data={data}
       ListHeaderComponent={<Searchbar/>}
       ItemSeparatorComponent={() => <View style={styles.separator}/>}
-keyExtractor={item => item.id?.toString() || Math.random().toString()}
+keyExtractor={(item,index) => item.id?.toString() || index.toString()}
       renderItem={renderItem}
   />
   

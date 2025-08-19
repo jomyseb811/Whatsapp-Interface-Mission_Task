@@ -6,7 +6,7 @@ import ReplyBar from '@/components/ReplyBar';
 
 const Status = () => {
 const { title , photo,} = useLocalSearchParams<{ title: string , photo : string }>()
-const imagesuri = photo? decodeURIComponent(photo) : undefined
+const imagesuri = photo || undefined
 const router = useRouter();
 
 
